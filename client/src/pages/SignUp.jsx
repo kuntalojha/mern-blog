@@ -85,7 +85,7 @@ export default function SignUp() {
       // If wvery thing is ok then we set loding false
       setLoading(false);
 
-      // Here I use react useNavigate (navigate)
+      // Here I use react-router-dom useNavigate (navigate)
       if (res.ok) {
         navigate('sign-in');
       }
