@@ -85,12 +85,12 @@ app.use('/api/auth', authRoutes);
 app.use((err, req, res, next) => {
   // Here status code come from error(err)
   const statusCode = err.statusCode || 500;
-  const massage = err.massage || 'Internal Server Error';
+  const message = err.message || 'Internal Server Error';
 
   res.status(statusCode).json({
     success: false,
     statusCode,
-    massage,
+    message,
   });
 });
 
