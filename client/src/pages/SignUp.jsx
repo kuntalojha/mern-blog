@@ -87,7 +87,7 @@ export default function SignUp() {
 
       // Here I use react-router-dom useNavigate (navigate)
       if (res.ok) {
-        navigate('sign-in');
+        navigate('/sign-in');
       }
     } catch (error) {
       // Handle errors heres
