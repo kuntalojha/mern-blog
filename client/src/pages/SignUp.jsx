@@ -1,4 +1,4 @@
-// SignUp.jsx
+// client/src/SignUp.jsx
 // import React from "react";
 // Import link from react-router-dom
 import { Link, useNavigate } from 'react-router-dom';
