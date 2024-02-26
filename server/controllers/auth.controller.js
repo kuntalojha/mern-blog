@@ -111,3 +111,54 @@ export const signin = async (req, res, next) => {
     next(error);
   }
 };
+
+// Here I make async function for google and export it as name google
+
+export const google = async (req, res, next) => {
+  const { email, name, googlePhotoUrl } = req.body;
+
+  try {
+    const user = await User.findOne({ email });
+    if (user) {
+      const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+      const { password, ...rest } = user._doc;
+      res
+        .status(200)
+        .cookie('access_token', token, {
+          httpOnly: true,
+        })
+        .json(rest);
+    } else {
+      // Here I use some javascript method Math.random() toString(36) here 36 is 0 to 9 and a to z and slice(-8) -8 is last 8 string
+      const generatedPassword =
+        Math.random().toString(36).slice(-8) +
+        Math.random().toString(36).slice(-8);
+
+      //  Here I hashed password
+      const hashedPassword = bcryptjs.hashSync(generatedPassword, 10);
+
+      // Create new user here
+      const newUser = new User({
+        // Kuntal Ojha => kuntalojha41052
+        username:
+          name.toLowerCase().split(' ').json('') +
+          Math.random().toString(9).slice(-4),
+        email,
+        password: hashedPassword,
+        profilePicture: googlePhotoUrl,
+      });
+      // Save the new user
+      await newUser.save();
+      const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET);
+      const { password, ...rest } = newUser._doc;
+      res
+        .status(200)
+        .cookie('access_token', token, {
+          httpOnly: true,
+        })
+        .json(rest);
+    }
+  } catch (error) {
+    next(error);
+  }
+};

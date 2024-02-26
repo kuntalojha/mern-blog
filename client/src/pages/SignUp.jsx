@@ -9,6 +9,9 @@ import { Alert, Button, Label, Spinner, TextInput } from 'flowbite-react';
 // Here I Import useState() from react
 import { useState } from 'react';
 
+// Here I import OAuth component from ../components/OAuth
+import OAuth from '../components/OAuth';
+
 export default function SignUp() {
   // Here I make pace of set it going to take empty object
   // Here I use react useState()
@@ -163,6 +166,8 @@ export default function SignUp() {
                 'Sign Up'
               )}
             </Button>
+            {/* Here I use OAuth component*/}
+            <OAuth />
           </form>
           <div className='flex gap-2 text-sm mt-5'>
             <span>Have an account?</span>

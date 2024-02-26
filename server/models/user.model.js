@@ -2,6 +2,9 @@
 //* Import mongoose from mongoose for make user Schema in mongoDB
 import mongoose from 'mongoose';
 
+// Import image from public folder  I wii try it later
+// import defaultProfile from '../../client/public/profile.jpg';
+
 // Here I Create Schema called  userSchema
 const userSchema = new mongoose.Schema(
   {
@@ -19,6 +22,12 @@ const userSchema = new mongoose.Schema(
     password: {
       type: String,
       required: true,
+    },
+    profilePicture: {
+      type: String,
+      // default: defaultProfile,
+      default:
+        'https://soccerpointeclaire.com/wp-content/uploads/2021/06/default-profile-pic-e1513291410505.jpg',
     },
   },
   // This one use for save the createdAt and updatedAt timestamps at database
