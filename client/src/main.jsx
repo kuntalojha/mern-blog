@@ -5,8 +5,9 @@ import App from './App.jsx';
 import './index.css';
 
 // Redux Toolkit import from redux/store.js
-import { store } from './redux/store.js';
+import { store, persistor } from './redux/store.js';
 import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   // This is without react-redux
@@ -14,8 +15,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   // <App />
   // </React.StrictMode>
   // Now we use Redux Toolkit
-
-  <Provider store={store}>
-    <App />
-  </Provider>
+  <PersistGate persistor={persistor}>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </PersistGate>
 );
